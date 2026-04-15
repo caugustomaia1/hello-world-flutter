@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helloworld/l10n/generated/app_localizations.dart';
 
 class AppForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -9,15 +10,17 @@ class AppForm extends StatelessWidget {
     _formKey.currentState!.validate();
   }
 
-  String? _validateRequiredField(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Campo obrigatório";
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    String? validateRequiredField(String? value) {
+      if (value == null || value.isEmpty) {
+        return l10n.onboardingLoginRequiredFieldErrorText;
+      }
+      return null;
+    }
+
     return Form(
       key: _formKey,
       child: Column(
@@ -27,18 +30,22 @@ class AppForm extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: 16.0),
             child: Text(
-              "Insira seus dados para entrar",
+              l10n.onboardingLoginInstructionText,
               style: TextStyle(fontSize: 16.0),
               textAlign: TextAlign.center,
             ),
           ),
-          FullNameFields(validator: _validateRequiredField),
+          FullNameFields(
+            firstNameLabel: l10n.onboardingLoginFirstNameLabel,
+            lastNameLabel: l10n.onboardingLoginLastNameLabel,
+            validator: validateRequiredField,
+          ),
           TextFormField(
             decoration: InputDecoration(
-              labelText: 'Email',
+              labelText: l10n.onboardingLoginEmailLabel,
               border: OutlineInputBorder(),
             ),
-            validator: _validateRequiredField,
+            validator: validateRequiredField,
           ),
           ElevatedButton(
             onPressed: _validateForm,
@@ -46,7 +53,7 @@ class AppForm extends StatelessWidget {
               foregroundColor: Colors.black,
               minimumSize: Size(double.infinity, 50),
             ),
-            child: const Text("Entrar"),
+            child: Text(l10n.onboardingLoginSubmitButton),
           ),
         ],
       ),
@@ -55,9 +62,16 @@ class AppForm extends StatelessWidget {
 }
 
 class FullNameFields extends StatelessWidget {
+  final String firstNameLabel;
+  final String lastNameLabel;
   final String? Function(String?) validator;
 
-  const FullNameFields({super.key, required this.validator});
+  const FullNameFields({
+    super.key,
+    required this.firstNameLabel,
+    required this.lastNameLabel,
+    required this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +81,7 @@ class FullNameFields extends StatelessWidget {
         Expanded(
           child: TextFormField(
             decoration: InputDecoration(
-              labelText: 'Nome',
+              labelText: firstNameLabel,
               border: OutlineInputBorder(),
             ),
             validator: validator,
@@ -76,7 +90,7 @@ class FullNameFields extends StatelessWidget {
         Expanded(
           child: TextFormField(
             decoration: InputDecoration(
-              labelText: 'Sobrenome',
+              labelText: lastNameLabel,
               border: OutlineInputBorder(),
             ),
             validator: validator,
