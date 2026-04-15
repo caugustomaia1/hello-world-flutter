@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io' as io;
 
-import 'package:helloworld/Formulario.dart';
+import 'package:helloworld/app_form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _fecharApp() {
+  void _closeApp() {
     io.exit(0);
   }
 
@@ -41,9 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 212, 192, 13),
         title: Text(widget.title),
-        actions: [TextButton(onPressed: _fecharApp, child: Text("X"))],
+        actions: [TextButton(onPressed: _closeApp, child: Text("X"))],
       ),
-      body: Padding(padding: const EdgeInsets.all(16.0), child: Formulario()),
+      body: Padding(padding: const EdgeInsets.all(16.0), child: AppForm()),
     );
   }
 }
