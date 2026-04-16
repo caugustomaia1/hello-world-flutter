@@ -52,11 +52,7 @@ class _AppRideHistoryState extends State<AppRideHistory> {
             // }
             if (state is RideSuccessState) {
               return ListView(
-                children: [
-                  _RideCard(ride: Ride(id: '1')),
-                  _RideCard(ride: Ride(id: '2')),
-                  _RideCard(ride: Ride(id: '3')),
-                ],
+                children: state.rides.map((ride) => _RideCard(ride: ride)).toList(),
               );
             }
             return const Center(child: Text('Nenhuma corrida encontrada'));

@@ -25,10 +25,6 @@ class RideBloc extends Bloc<RideEvent, RideState> {
   Future<List<Ride>> _fetchRides() async {
     // Mock de uma chamada de API
     await Future.delayed(const Duration(seconds: 2));
-    return [
-      Ride(id: '1'),
-      Ride(id: '2'),
-      Ride(id: '3'),
-    ];
+    return [Ride(id: '10'), Ride(id: '20'), Ride(id: '30'), Ride(id: '40')];
   }
 }
