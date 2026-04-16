@@ -3,6 +3,10 @@
   "@onboardingLoginAppBarTitle": {
     "description": "The title of the application"
   },
+  "onboardingMapAppBarTitle": "Taxi Machine Map",
+  "@onboardingMapAppBarTitle": {
+    "description": "The title of the map view"
+  },
   "onboardingLoginInstructionText": "Enter your details to sign in",
   "@onboardingLoginInstructionText": {
     "description": "Instruction text for the login form"

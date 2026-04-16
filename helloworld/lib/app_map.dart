@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:helloworld/l10n/generated/app_localizations.dart';
 
 class AppMap extends StatefulWidget {
   const AppMap({super.key});
@@ -57,9 +58,11 @@ class _AppMapState extends State<AppMap> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Taxi Machine Map"),
+        title: Text(l10n.onboardingMapAppBarTitle),
         backgroundColor: const Color.fromARGB(255, 212, 192, 13),
       ),
       body: GoogleMap(

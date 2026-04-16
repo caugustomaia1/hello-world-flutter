@@ -1,5 +1,6 @@
 {
   "onboardingLoginAppBarTitle": "Taxi Machine onboarding",
+  "onboardingMapAppBarTitle": "Taxi Machine Map",
   "onboardingLoginInstructionText": "Insira seus dados para entrar",
   "onboardingLoginFirstNameLabel": "Nome",
   "onboardingLoginLastNameLabel": "Sobrenome",
