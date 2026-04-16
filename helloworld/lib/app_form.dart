@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:helloworld/app_map.dart';
 
 class AppForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   AppForm({super.key});
 
-  void _validateForm() {
-    _formKey.currentState!.validate();
+  bool _validateForm() {
+    return _formKey.currentState!.validate();
+  }
+
+  void _login(BuildContext context) {
+    if (!_validateForm()) {
+      return;
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AppMap()),
+    );
   }
 
   String? _validateRequiredField(String? value) {
@@ -41,7 +52,7 @@ class AppForm extends StatelessWidget {
             validator: _validateRequiredField,
           ),
           ElevatedButton(
-            onPressed: _validateForm,
+            onPressed: () => _login(context),
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.black,
               minimumSize: Size(double.infinity, 50),
