@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helloworld/app_map.dart';
 import 'package:helloworld/l10n/generated/app_localizations.dart';
 
 class AppForm extends StatelessWidget {
@@ -6,8 +7,18 @@ class AppForm extends StatelessWidget {
 
   AppForm({super.key});
 
-  void _validateForm() {
-    _formKey.currentState!.validate();
+  bool _validateForm() {
+    return _formKey.currentState!.validate();
+  }
+
+  void _login(BuildContext context) {
+    if (!_validateForm()) {
+      return;
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AppMap()),
+    );
   }
 
   @override
@@ -48,7 +59,7 @@ class AppForm extends StatelessWidget {
             validator: validateRequiredField,
           ),
           ElevatedButton(
-            onPressed: _validateForm,
+            onPressed: () => _login(context),
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.black,
               minimumSize: Size(double.infinity, 50),
