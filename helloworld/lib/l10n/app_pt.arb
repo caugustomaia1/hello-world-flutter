@@ -1,0 +1,9 @@
+{
+  "onboardingLoginAppBarTitle": "Taxi Machine onboarding",
+  "onboardingLoginInstructionText": "Insira seus dados para entrar",
+  "onboardingLoginFirstNameLabel": "Nome",
+  "onboardingLoginLastNameLabel": "Sobrenome",
+  "onboardingLoginEmailLabel": "Email",
+  "onboardingLoginRequiredFieldErrorText": "Campo obrigatório",
+  "onboardingLoginSubmitButton": "Entrar"
+}
