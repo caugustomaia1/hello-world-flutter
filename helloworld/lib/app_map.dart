@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:helloworld/app_ride_history.dart';
+import 'package:helloworld/blocs/ride_bloc.dart';
 import 'package:helloworld/l10n/generated/app_localizations.dart';
 
 class AppMap extends StatefulWidget {
@@ -16,6 +19,8 @@ class _AppMapState extends State<AppMap> {
   final List<Marker> _markers = [];
   LatLng _lastMapPosition = _initialPosition;
   double _zoom = 12;
+
+  int _currentIndex = 0;
 
   void _onCameraMove(CameraPosition position) {
     _lastMapPosition = position.target;
@@ -65,6 +70,29 @@ class _AppMapState extends State<AppMap> {
         title: Text(l10n.onboardingMapAppBarTitle),
         backgroundColor: const Color.fromARGB(255, 212, 192, 13),
       ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => BlocProvider(
+                  create: (_) => RideBloc(),
+                  child: const AppRideHistory(),
+                ),
+              ),
+            );
+          }
+        },
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.map), label: 'Mapa'),
+          NavigationDestination(
+            icon: Icon(Icons.history),
+            label: 'Histórico de Corridas',
+          ),
+        ],
+      ),
       body: GoogleMap(
         onMapCreated: (GoogleMapController controller) {
           _mapController = controller;
@@ -84,18 +112,25 @@ class _AppMapState extends State<AppMap> {
             MapPinsNavigatorButtons(
               icon: Icons.arrow_left,
               onPressed: _moveLeft,
+              heroTag: 'leftBtn',
             ),
             const SizedBox(width: 16),
-            MapPinsNavigatorButtons(icon: Icons.add, onPressed: _addPin),
+            MapPinsNavigatorButtons(
+              icon: Icons.add,
+              onPressed: _addPin,
+              heroTag: 'addBtn',
+            ),
             const SizedBox(width: 16),
             MapPinsNavigatorButtons(
               icon: Icons.arrow_right,
               onPressed: _moveRight,
+              heroTag: 'rightBtn',
             ),
             const SizedBox(width: 16),
             MapPinsNavigatorButtons(
               icon: Icons.refresh,
               onPressed: _removeAllPins,
+              heroTag: 'refreshBtn',
             ),
           ],
         ),
@@ -109,16 +144,19 @@ class MapPinsNavigatorButtons extends StatelessWidget {
     super.key,
     required this.icon,
     required this.onPressed,
+    required this.heroTag,
   });
 
   final IconData icon;
   final VoidCallback onPressed;
+  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: heroTag,
       onPressed: onPressed,
-      tooltip: 'Add',
+      tooltip: 'Action',
       backgroundColor: Colors.amber,
       child: Icon(icon),
     );
