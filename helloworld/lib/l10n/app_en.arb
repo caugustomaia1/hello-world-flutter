@@ -1,0 +1,30 @@
+{
+  "onboardingLoginAppBarTitle": "Taxi Machine onboarding",
+  "@onboardingLoginAppBarTitle": {
+    "description": "The title of the application"
+  },
+  "onboardingLoginInstructionText": "Enter your details to sign in",
+  "@onboardingLoginInstructionText": {
+    "description": "Instruction text for the login form"
+  },
+  "onboardingLoginFirstNameLabel": "First Name",
+  "@onboardingLoginFirstNameLabel": {
+    "description": "Label for the first name input field"
+  },
+  "onboardingLoginLastNameLabel": "Last Name",
+  "@onboardingLoginLastNameLabel": {
+    "description": "Label for the last name input field"
+  },
+  "onboardingLoginEmailLabel": "Email",
+  "@onboardingLoginEmailLabel": {
+    "description": "Label for the email input field"
+  },
+  "onboardingLoginRequiredFieldErrorText": "Required field",
+  "@onboardingLoginRequiredFieldErrorText": {
+    "description": "Message shown when a required field is empty"
+  },
+  "onboardingLoginSubmitButton": "Sign In",
+  "@onboardingLoginSubmitButton": {
+    "description": "Text for the sign in button"
+  }
+}
