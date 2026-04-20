@@ -1,0 +1,9 @@
+name: machine_feature
+description: Gera a estrutura de BLoC para uma nova feature.
+version: 0.1.0+1
+
+vars:
+  feature_name:
+    type: string
+    description: "Nome da feature (ex: pagamento, corrida, perfil)"
+    prompt: "Qual o nome da feature?"
